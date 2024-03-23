@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Futura">
+    <link href="{% static 'css/nav.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <ul>
+        <li><a href="/admin_login">Admin</a></li>
+        <li><a href="/hod_login">HOD</a></li>
+        <li><a href="/faculty_login">Faculty</a></li>
+        <li><a href="/student_login">Student</a></li>
+        <li><a href="/alumni_login">Alumni</a></li>
+        <li><a href="/logout">logout</a></li>
+    </ul>
+</nav>
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

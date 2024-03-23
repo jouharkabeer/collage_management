@@ -1,0 +1,73 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UCE_MANAGEMENT</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Futura">
+  <link href="{% static 'css/signup.css' %}" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="container">
+      <form method="POST" enctype="multipart/form-data">
+        <div class="form">
+            {% csrf_token %}
+        <h2 style="color: white; text-align: center;" >{{msg}}</h2>
+            <div class="subtitle">Let's create your account!</div>
+            <div class="input-container-full ic1">
+                <input id="email" class="input" type="text" name="email" placeholder="Email">
+            </div>
+            <div class="flex">
+                <div class="input-container ic2">
+                    <input id="first_name" class="input" type="text" name="first_name" placeholder="First Name">
+                </div>
+                <div class="input-container ic2">
+                    <input id="last_name" class="input" type="text" name="last_name" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="input-container ic2">
+                    <input id="password1" class="input" type="password" name="password1" placeholder="Enter Password">
+                </div>
+                <div class="input-container ic2">
+                    <input id="password2" class="input" type="password" name="password2" placeholder="Confirm Password">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="input-container ic2">
+                    <input id="phone" class="input" type="text" name="phone" placeholder="Phone Number">
+                </div>
+                <div class="input-container ic2">
+                    <input id="aadhar_id" class="input" type="text" name="aadhar_id" placeholder="Adhaar Number">
+                </div>
+            </div>
+            <div class="flex">
+              <div class="input-container ic2 input" style="width: 45%;">
+                <input type="file" name="image" accept="image/*">
+              </div>
+              <div class="input-container ic2">
+                  <select id="department" class="input" name="department">
+                      <option value="" selected disabled>Department</option>
+                      <option value="CSE">Computer Science</option>
+                      <option value="ECE">Electronics and Communication</option>
+                      <option value="PE">Mechanical Engineering</option>
+                      <option value="EEE">Electrical and Electronics</option>
+                  </select>
+              </div>
+          </div>
+          
+            <button type="submit" class="submit">Submit</button>
+        </div>
+    </form>
+    
+    </div>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Futura">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        td{
+            padding: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="sidebar">
+        <div class="items">
+            <div class="flex">
+                <a href="\admin_home"><img src="https://cdn.pixabay.com/photo/2017/03/16/21/18/logo-2150297_640.png" class="logo"/></a>
+                <a href="\logout"> <i class="fa-solid fa-right-from-bracket icon"></i></a>
+            </div>
+
+            <div class="line"></div> 
+
+           <a href="\admin_home"> <div class="itemhead ">
+                Home
+            </div></a>
+
+            <a href="\all_hod"> <div class="itemhead" active>
+                HOD's
+            </div></a>
+
+            <div class="itemhead active" onclick="toggleSubMenu('student')">
+                <div class="flex">
+                   <a href="\all_students"> <div>Student</div></a>
+                    
+                </div>
+            </div>
+            <div class="submenu student ">
+                <a href="\accepted_students"><div class="item">Accepted</div></a>
+                <a href="\rejected_students"><div class="item">Rejected</div></a>
+                <a href="\pending_students"><div class="item">Pending</div></a>
+            </div>
+
+
+            <div class="itemhead" onclick="toggleSubMenu('faculty')">
+                <div class="flex">
+                    <div>Faculty</div>
+                    <div><i class="fa-solid fa-caret-down pointer"></i></div>
+                </div>
+            </div>
+            <div class="submenu faculty" style="display: none;">
+                <a href="\all_faculty"><div class="item">All</div></a>
+                <a href="\accepted_faculty"><div class="item">Accepted</div></a>
+                <a href="\rejected_faculty"><div class="item">Rejected</div></a>
+                <a href="\pending_faculty"><div class="item">Pending</div></a>
+            </div>
+
+            <div class="itemhead" onclick="toggleSubMenu('alumni')">
+                <div class="flex">
+                    <div>Alumni</div>
+                    <div><i class="fa-solid fa-caret-down pointer"></i></div>
+                </div>
+            </div>
+            <div class="submenu alumni" style="display: none;">
+                <a href="\all_alumni"><div class="item">All</div></a>
+                <a href="\accepted_alumni"><div class="item">Accepted</div></a>
+                <a href="\rejected_alumni"><div class="item">Rejected</div></a>
+                <a href="\pending_alumni"><div class="item">Pending</div></a>
+        </div>
+    </div>
+    <div class="logout">
+        <a href="\logout">Logout</a>
+    </div>
+    </div>
+<div class="content">
+    <div class="mmm">
+        <table class="table" id="example">
+            <thead>
+                <tr class="tablehead">
+                    <th>Sr.No</th>
+                    <th>Profile</th>
+                    <th>Full Name</th>
+                    <th>Email Id</th>
+                    <th>Contact</th>
+                    <th>Aadhar ID</th>
+                    <th>Gender</th>
+                    <th>Year</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img src="{{student.image.url}}" class="rounded-circle" width="70px" height="70px" alt="profile"></td>
+                    <td>{{student.user.get_full_name}}</td>
+                    <td>{{student.user.email}}</td>
+                    <td>{{student.phone}}</td>
+                    <td>{{student.aadhaar_number}}</td>
+                    <td>{{student.gender}}</td>
+                    <td>{{student.year}}</td>
+                    <td>{{student.department}}</td>
+                    <td>{{student.status}}</td>
+                    <td class="gap">
+                        <div class="icon1">
+                            <a href="/change_status_student/{{student.sid}}" class="btn">
+                                <i class="fa-solid fa-pen" style="color: green;">
+                                </i>
+                            </a>
+                        </div>
+                        <div class="icon2">
+                            <a href="/delete_student/{{student.sid}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this student?')">
+                                <i class="fa-solid fa-trash" style="color: red;"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+</div>
+</div>
+<script>
+    function toggleSubMenu(subMenuClass) {
+        var subMenu = document.querySelector('.' + subMenuClass);
+        if (subMenu.style.display === 'none') {
+            subMenu.style.display = 'block';
+        } else {
+            subMenu.style.display = 'none';
+        }
+    }
+</script>
+<script src="https://kit.fontawesome.com/920c089101.js" crossorigin="anonymous"></script>
+
+</body>
+
+                
